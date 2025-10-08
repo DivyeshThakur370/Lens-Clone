@@ -11,7 +11,7 @@ const addtocartSchema = new mongoose.Schema(
     discount: String,
     price: Number,
     frame: String,
-    userid: String,
+    userid: mongoose.Schema.Types.ObjectId,
   },
   {
     timestamps: true,

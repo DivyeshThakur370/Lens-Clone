@@ -4,6 +4,7 @@ const {
   getAllUsersController,
   deleteUserController,
   editUserController,
+  ordersController,
 } = require("../controllers/admin.controller");
 const {
   CreateProductController,
@@ -21,5 +22,8 @@ adminRoutes.put("/edituser/:id", isAdmin, editUserController);
 
 // create product
 adminRoutes.post("/create", isAdmin, CreateProductController);
+
+// user orders
+adminRoutes.get("/orders", ordersController);
 
 module.exports = adminRoutes;
