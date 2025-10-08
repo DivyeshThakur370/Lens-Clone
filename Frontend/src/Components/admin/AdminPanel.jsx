@@ -7,6 +7,9 @@ const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState("users");
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const [users, setUsers] = useState([]);
+  const [orders, setOrders] = useState([]);
+
+  console.log(`🚀 ~ AdminPanel.jsx:12 ~ AdminPanel ~ orders:`, orders);
 
   const [stats] = useState({
     totalUsers: 1247,
@@ -15,7 +18,6 @@ const AdminPanel = () => {
     revenue: 125430,
   });
 
-  // const [users] = useState([
   //   {
   //     id: 1,
   //     name: "John Doe",
@@ -53,43 +55,43 @@ const AdminPanel = () => {
   //   },
   // ]);
 
-  const [orders] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      product: "Ray-Ban Aviator",
-      quantity: 2,
-      totalPrice: 15999,
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      product: "Oakley Holbrook",
-      quantity: 1,
-      totalPrice: 12499,
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      product: "Prada PR 01VS",
-      quantity: 1,
-      totalPrice: 25999,
-    },
-    {
-      id: 4,
-      name: "Sarah Wilson",
-      product: "Gucci GG0061S",
-      quantity: 3,
-      totalPrice: 45999,
-    },
-    {
-      id: 5,
-      name: "David Brown",
-      product: "Tom Ford FT5401",
-      quantity: 1,
-      totalPrice: 18999,
-    },
-  ]);
+  // const [orders] = useState([
+  //   {
+  //     id: 1,
+  //     name: "John Doe",
+  //     product: "Ray-Ban Aviator",
+  //     quantity: 2,
+  //     totalPrice: 15999,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Jane Smith",
+  //     product: "Oakley Holbrook",
+  //     quantity: 1,
+  //     totalPrice: 12499,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Mike Johnson",
+  //     product: "Prada PR 01VS",
+  //     quantity: 1,
+  //     totalPrice: 25999,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Sarah Wilson",
+  //     product: "Gucci GG0061S",
+  //     quantity: 3,
+  //     totalPrice: 45999,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "David Brown",
+  //     product: "Tom Ford FT5401",
+  //     quantity: 1,
+  //     totalPrice: 18999,
+  //   },
+  // ]);
 
   const [productForm, setProductForm] = useState({
     imageUrl1: "",
@@ -153,6 +155,12 @@ const AdminPanel = () => {
           withCredentials: true,
         }
       );
+
+      console.log(
+        `🚀 ~ AdminPanel.jsx:159 ~ handleUserDelete ~ userDelete:`,
+        userDelete
+      );
+
       setDropdownOpen(null);
     } catch (error) {
       console.log(`🚀 ~ AdminPanel.jsx:147 ~ handleUserDelete ~ error:`, error);
@@ -181,8 +189,18 @@ const AdminPanel = () => {
       console.log(`🚀 ~ AdminPanel.jsx:168 ~ handleEditUser ~ error:`, error);
     }
   };
+  const getAllOrders = async () => {
+    try {
+      const res = await axios(`http://localhost:8080/admin/orders`);
+
+      setOrders(res?.data);
+    } catch (error) {
+      console.log(`🚀 ~ AdminPanel.jsx:189 ~ getAllOrders ~ error:`, error);
+    }
+  };
   useEffect(() => {
     getAllUsers();
+    getAllOrders();
   }, []);
 
   return (
@@ -248,7 +266,7 @@ const AdminPanel = () => {
 
       {/* Admin Tabs */}
       <div className="w-full">
-        <div className="grid w-full grid-cols-1 sm:grid-cols-4 mb-6 bg-gray-100 rounded-lg p-1">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-3 mb-6 bg-gray-100 rounded-lg p-1">
           <button
             onClick={() => setActiveTab("users")}
             className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
@@ -278,16 +296,6 @@ const AdminPanel = () => {
             }`}
           >
             Products
-          </button>
-          <button
-            onClick={() => setActiveTab("settings")}
-            className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-              activeTab === "settings"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
-          >
-            Settings
           </button>
         </div>
 
@@ -495,7 +503,7 @@ const AdminPanel = () => {
                           Customer Name
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Product
+                          Payment
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Quantity
@@ -509,19 +517,19 @@ const AdminPanel = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {orders.map((order) => (
-                        <tr key={order.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {order.name}
+                      {orders?.data.map((order) => (
+                        <tr key={order._id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 first-letter:capitalize">
+                            {order.email.split("@")[0]}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 first-letter:capitalize">
+                            {order.payment}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {order.product}
+                            {order.orders.length}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {order.quantity}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            ₹{order.totalPrice.toLocaleString()}
+                            ₹{order.totalOrderPrice.toLocaleString()}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <div className="relative">
@@ -826,47 +834,6 @@ const AdminPanel = () => {
                   </button>
                 </div>
               </form>
-            </div>
-          </div>
-        )}
-
-        {/* Settings Tab */}
-        {activeTab === "settings" && (
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">
-                System Settings
-              </h2>
-              <p className="text-sm text-gray-600 mt-1">
-                Configure application settings
-              </p>
-            </div>
-            <div className="p-6">
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-medium mb-2">General Settings</h3>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <span className="text-sm">Site Maintenance Mode</span>
-                      <button className="inline-flex items-center px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors">
-                        Toggle
-                      </button>
-                    </div>
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <span className="text-sm">Email Notifications</span>
-                      <button className="inline-flex items-center px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors">
-                        Configure
-                      </button>
-                    </div>
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <span className="text-sm">Payment Settings</span>
-                      <button className="inline-flex items-center px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors">
-                        Manage
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         )}

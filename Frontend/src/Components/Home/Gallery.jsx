@@ -277,7 +277,7 @@ export const Gallery = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative my-[2%]">
+      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative">
         <div className="flex justify-between items-center mb-5 px-5">
           <h2 className="text-2xl font-bold max-sm:text-lg sm:max-md:text-xl md:max-lg:text-[22px]">
             EYEGLASSES
@@ -344,7 +344,7 @@ export const Gallery = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative my-[2%]">
+      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative ">
         <div className="flex justify-between items-center mb-5 px-5">
           <h2 className="text-2xl font-bold max-sm:text-lg sm:max-md:text-xl md:max-lg:text-[22px]">
             SUNGLASSES
@@ -418,7 +418,7 @@ export const Gallery = () => {
         />
       </div>
 
-      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative my-[2%]">
+      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative ">
         <div className="flex justify-between items-center mb-5 px-5">
           <h2 className="text-2xl font-bold max-sm:text-lg sm:max-md:text-xl md:max-lg:text-[22px]">
             EYEGLASSES
@@ -493,7 +493,7 @@ export const Gallery = () => {
         />
       </div>
 
-      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative my-[2%]">
+      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative ">
         <div className="flex justify-between items-center mb-5 px-5">
           <h2 className="text-2xl font-bold max-sm:text-lg sm:max-md:text-xl md:max-lg:text-[22px]">
             CONTACT LENSES
@@ -560,7 +560,7 @@ export const Gallery = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative my-[2%]">
+      <div className="w-full max-w-6xl my-2.5 mx-auto overflow-hidden relative ">
         <div className="flex justify-between items-center mb-5 px-5">
           <h2 className="text-2xl font-bold max-sm:text-lg sm:max-md:text-xl md:max-lg:text-[22px]">
             CONTACT LENSES
