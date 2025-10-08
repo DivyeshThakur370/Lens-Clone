@@ -11,6 +11,7 @@ export const Gallery = () => {
   useEffect(() => {
     SecondsliderdataFun();
   }, []);
+  console.log("naitik");
   return (
     <div>
       <div>
