@@ -159,7 +159,7 @@ export const Gallery = () => {
         </div>
       </div>
 
-      <div className="container">
+      <div className="mx-auto">
         <div className="line-container">
           <span className="font-bold text-2xl text-center flex justify-center my-2">
             FIND THE PERFECT FIT
@@ -628,4 +628,3 @@ export const Gallery = () => {
     </div>
   );
 };
-
