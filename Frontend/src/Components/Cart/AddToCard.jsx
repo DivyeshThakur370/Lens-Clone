@@ -36,6 +36,23 @@ const AddToCard = () => {
       .then((res) => setcard(res.data))
       .catch((err) => console.log(err));
   };
+  const checkoutPayment = async () => {
+    const priceWithDiscount = totalPrice - (totalPrice * 25) / 100;
+    try {
+      axios
+        .post(
+          `http://localhost:8080/checkout/payment`,
+          { card, priceWithDiscount },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(`🚀 ~ AddToCard.jsx:44 ~ checkoutPayment ~ error:`, error);
+    }
+  };
 
   useEffect(() => {
     addTOCard();
@@ -220,13 +237,12 @@ const AddToCard = () => {
                 <span className="text-sm text-gray-600">
                   You are saving ₹{(totalPrice * 25) / 100}
                 </span>
-                <a href="#" className="text-blue-600 hover:underline">
-                  REMOVE
-                </a>
+                <p className="text-blue-600 hover:underline">REMOVE</p>
               </div>
             </div>
 
             <button
+              onClick={checkoutPayment}
               type="button"
               className="w-full rounded-md bg-emerald-500 px-4 py-2 text-white transition-colors hover:bg-emerald-600"
             >
