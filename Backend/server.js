@@ -7,7 +7,6 @@ const { connection } = require("./config/db");
 const ProductsRoutes = require("./routes/product.route");
 const addtocartRoutes = require("./routes/addtocart.route");
 const adminRoutes = require("./routes/admin.route");
-const paymentRoute = require("./routes/stripe.route");
 
 const app = express();
 app.use(express.json());
@@ -28,8 +27,7 @@ app.use(
 app.use("/api", ProductsRoutes);
 app.use("/auth", authRoutes);
 app.use("/addtocart", addtocartRoutes);
-app.use("/admin", adminRoutes);
-app.use("/checkout", paymentRoute);
+app.use("/admin",adminRoutes)
 
 app.listen(process.env.PORT, async () => {
   try {
