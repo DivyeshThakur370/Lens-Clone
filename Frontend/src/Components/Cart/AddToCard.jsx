@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useLogin } from "../../Hooks/useLogin";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../Context/UseContext";
 
 const AddToCard = () => {
   const { user } = useLogin();
   const [card, setcard] = useState([]);
   const [quantity, setQuantity] = useState({});
+  const { setCartItems } = useContext(SearchContext);
 
   const totalPrice = card.reduce(
     (acc, item) => acc + (Number(item.price) || 0) * (quantity[item._id] || 1),
@@ -33,7 +35,10 @@ const AddToCard = () => {
       .get(`http://localhost:8080/addtocart/get`, {
         withCredentials: true,
       })
-      .then((res) => setcard(res.data))
+      .then((res) => {
+        setcard(res?.data);
+        setCartItems(res?.data.length);
+      })
       .catch((err) => console.log(err));
   };
 

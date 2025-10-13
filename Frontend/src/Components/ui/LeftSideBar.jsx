@@ -18,26 +18,26 @@ export const LeftSideBar = () => {
         <div className="w-full p-5 border border-[#ccc] sm:p-5 max-[576px]:p-2.5">
           <div className="mb-5">
             <h3 className="mb-2.5 text-base font-bold">AGE GROUP</h3>
-            <label className="mb-2.5 text-sm flex items-center">
+            <label className="mb-2.5 text-sm flex  items-center">
               <input
                 type="checkbox"
                 onClick={() => setProductFilter("Aviator")}
               />
-              2-5 yrs(21)
+              <span className="mx-1">2-5 yrs(21)</span>
             </label>
             <label className="mb-2.5 text-sm flex items-center">
               <input
                 type="checkbox"
                 onClick={() => setProductFilter("HalfRim")}
               />
-              5-8 yrs(40)
+              <span className="mx-1">5-8 yrs(40)</span>
             </label>
             <label className="mb-2.5 text-sm flex items-center">
               <input
                 type="checkbox"
                 onClick={() => setProductFilter("FullRim")}
               />
-              8-12 yrs(53)
+              <span className="mx-1">8-12 yrs(53)</span>
             </label>
           </div>
 

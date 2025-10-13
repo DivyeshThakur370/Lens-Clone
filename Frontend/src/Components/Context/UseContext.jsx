@@ -8,6 +8,7 @@ export const SearchProvider = ({ children }) => {
   const [brand, setBrand] = useState(null);
   const [price, setPrice] = useState(null);
   const [gender, setGender] = useState(null);
+  const [cartItems, setCartItems] = useState(0);
 
   return (
     <SearchContext.Provider
@@ -22,6 +23,8 @@ export const SearchProvider = ({ children }) => {
         setPrice,
         gender,
         setGender,
+        setCartItems,
+        cartItems,
       }}
     >
       {children}

@@ -1,17 +1,19 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SignIn from "../Auth/SignIn";
 import { SearchContext } from "../Context/UseContext";
 import { SignUp } from "../Auth/SignUp";
 import axios from "axios";
 import { useLogin } from "../../Hooks/useLogin";
+import { ShoppingCart } from "lucide-react";
 
 export const Navigation = () => {
+  const { setSearchData, cartItems } = useContext(SearchContext);
   const [isLogin, setisLogin] = useState(false);
   const [isSignup, setisSignup] = useState(false);
-  const { user } = useLogin()
+  const { user } = useLogin();
 
   const isCloseSignup = () => {
     setisSignup(false);
@@ -33,8 +35,6 @@ export const Navigation = () => {
       console.error("Logout failed:", err);
     }
   };
-
-  const { setSearchData } = useContext(SearchContext);
 
   return (
     <div>
@@ -113,12 +113,21 @@ export const Navigation = () => {
               </>
             )}
 
-            <Link
-              to="/AddToCard"
-              className="text-gray-700 text-sm no-underline"
-            >
-              Cart
-            </Link>
+            <div className="relative flex items-center">
+              <Link
+                to="/AddToCard"
+                className="flex items-center text-gray-700 text-sm no-underline hover:text-gray-900"
+              >
+                <ShoppingCart className="h-6 w-6" />
+                <span className="ml-1">Cart</span>
+              </Link>
+
+              {cartItems > 0 && (
+                <span className="absolute -top-2 -right-3 bg-yellow-400 text-black text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItems}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

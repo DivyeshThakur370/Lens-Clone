@@ -73,11 +73,10 @@ export const LensLayout = ({ glassType }) => {
             return (
               <div
                 key={idx}
-                className="border border-[#e0e0e0] rounded-[10px] my-[15px] mx-2.5 bg-white max-[576px]:my-0 max-[576px]:mx-0 sm:max-md:my-2.5 sm:max-md:mx-1.5 md:max-lg:my-2.5 md:max-lg:mx-1.5"
+                className="border border-[#e0e0e0] max-h-[500px] rounded-[10px] my-[15px] mx-2.5 bg-white max-[576px]:my-0 max-[576px]:mx-0 sm:max-md:my-2.5 sm:max-md:mx-1.5 md:max-lg:my-2.5 md:max-lg:mx-1.5"
               >
                 <div>
                   <div className="relative h-[34vh] pt-[26px] max-[576px]:h-auto max-[576px]:pt-0 sm:max-md:h-[30vh] md:max-lg:h-[28vh] group">
-                    <CiHeart className="text-[30px] absolute right-[5%] top-[5%] max-[576px]:text-2xl max-[576px]:right-2.5 max-[576px]:top-2.5 max-[576px]:hidden sm:max-md:text-[26px] md:max-lg:text-[28px]" />
                     <Link to={`/description/${el._id}`}>
                       <img
                         src={el.imageUrl || "/placeholder.svg"}
